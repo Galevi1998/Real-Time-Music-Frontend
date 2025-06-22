@@ -1,14 +1,11 @@
 import React from "react";
-import bgImage from "../../../public/clef.jpg";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 export default function Signin() {
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-black/20 overflow-hidden px-4">
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-20"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      />
+    <div className="relative flex items-center justify-center min-h-screen ">
+      
 
       <div className="w-full max-w-sm bg-white/80 backdrop-blur-xl px-6 py-8 sm:px-8 rounded-3xl shadow-xl z-10 border border-white/20">
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-gray-800 tracking-tight">
@@ -64,7 +61,10 @@ export default function Signin() {
 
 
           <div className="flex items-center justify-center mt-2">
-              <span className="text-sm text-gray-500"> Not regist</span>
+              <span className="text-sm text-gray-500"> Done got account ?</span>
+              <Link to="/signup" className="text-blue-600 text-sm hover:underline ml-1">
+                Sign Up
+                </Link>
             </div>
         </div>
       </div>
