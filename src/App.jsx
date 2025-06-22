@@ -1,13 +1,25 @@
 import { useState } from 'react'
-
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import Signin from './assets/comonents/Signin'
+import Navbar from './assets/comonents/layout/Navbar'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='bg-amber-700 min-h-screen flex justify-center items-center rounded-3xl'>
-      <h1 className='text-black text-4xl font-bold'>hello</h1>
-    </div>
+    <>
+    <Navbar/>
+    <Router>
+      <Routes>
+        {/* Define your routes here */}
+        {/* Example: */}
+        {/* <Route path="/" element={<Home />} /> */}
+        {/* <Route path="/about" element={<About />} /> */}
+        <Route path="/" element={<Signin />} />
+      </Routes>
+    </Router>
+    </>
+    
   );
 }
 
