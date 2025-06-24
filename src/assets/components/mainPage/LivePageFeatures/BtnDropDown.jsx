@@ -3,7 +3,6 @@ import React from "react";
 export default function BtnDropDown({ showDropdown, setShowDropdown, onlineUsers }) {
   return (
     <>
-      {/* Floating User List Toggle */}
       <div className="fixed bottom-4 left-4 sm:top-20 sm:right-4 sm:bottom-auto sm:left-auto z-50">
         <button
           onClick={() => setShowDropdown(!showDropdown)}
@@ -13,7 +12,6 @@ export default function BtnDropDown({ showDropdown, setShowDropdown, onlineUsers
         </button>
       </div>
 
-      {/* Floating User Panel */}
       {showDropdown && (
         <div
           className="
