@@ -5,7 +5,6 @@ import MainPagePlayer from "./MainPagePlayer";
 
 export default function MainPage() {
   const user = useUser();
-  console.log("user in main page", user);
   return (
     <>
     {(user.user.status === "Admin") ? (

@@ -1,14 +1,27 @@
 import React, { useEffect } from "react";
-import { Routes, Route , Navigate} from "react-router-dom";
-import Signin from "./assets/comonents/auth/Signin";
-import Signup from "./assets/comonents/auth/signUp/Signup";
-import Navbar from "./assets/comonents/layout/Navbar";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Signin from "./assets/components/auth/Signin";
+import Signup from "./assets/components/auth/signUp/Signup";
+import Navbar from "./assets/components/layout/Navbar";
 import bgImage from "./media/clef.jpg";
-import MainPage from "./assets/comonents/mainPage/MainPage";
+import MainPage from "./assets/components/mainPage/MainPage";
 import socket from "./assets/utils/socket";
 import { useUser } from "./context/UserContext";
 import { ToastContainer } from "react-toastify";
 import axios from "./assets/utils/axiosInstance";
+import Result from "./assets/components/mainPage/Result";
+import LivePage from "./assets/components/mainPage/LivePage";
+
+
+function RedirectIfSong({ user }) {
+  const isHebrew = localStorage.getItem("isHebrew");
+
+  if (isHebrew) {
+    return <Navigate to="/live" />;
+  }
+
+  return user ? <Navigate to="/mainpage" /> : <Signin />;
+}
 
 function App() {
   const { user, loginUser } = useUser(); // ✅ use loginUser not setingUser
@@ -30,18 +43,15 @@ function App() {
     };
 
     checkSession();
+
   }, []);
 
   useEffect(() => {
     socket.connect();
 
-    socket.on("connect", () => {
-      console.log("✅ Connected to socket:", socket.id);
-    });
+    socket.on("connect", () => {});
 
-    socket.on("disconnect", () => {
-      console.log("🔴 Disconnected from socket");
-    });
+    socket.on("disconnect", () => {});
 
     return () => {
       socket.disconnect();
@@ -61,20 +71,23 @@ function App() {
         pauseOnFocusLoss
         theme="light"
       />
-      <div className="relative min-h-screen overflow-hidden bg-black/20 px-4">
+      <div className="relative min-h-screen bg-gradient-to-br from-yellow-100 to-white px-4">
+        {/* Background layer */}
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="fixed inset-0 z-10 bg-cover bg-center opacity-20"
           style={{ backgroundImage: `url(${bgImage})` }}
         />
 
         <Routes>
           {/* Public routes */}
-          <Route
-            path="/"
-            element={user ? <Navigate to="/mainpage" /> : <Signin />}
-          />
+          <Route path="/" element={<RedirectIfSong user={user} />} />
+
           <Route
             path="/signup"
+            element={user ? <Navigate to="/mainpage" /> : <Signup />}
+          />
+          <Route
+            path="/signupAdmin"
             element={user ? <Navigate to="/mainpage" /> : <Signup />}
           />
 
@@ -82,6 +95,14 @@ function App() {
           <Route
             path="/mainpage"
             element={user ? <MainPage /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/result"
+            element={user ? <Result /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/live"
+            element={user ? <LivePage /> : <Navigate to="/" />}
           />
         </Routes>
       </div>

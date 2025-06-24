@@ -30,7 +30,7 @@ export default function InstrumentSelect({ value, onChange }) {
     <div className="relative">
       <button
         type="button"
-        className="w-full flex items-center justify-between p-2 rounded-xl text-gray-700"
+        className="w-full flex items-center justify-between p-2 rounded-xl text-gray-700 border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
         onClick={() => setOpen(!open)}
       >
         {value ? (
