@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
 
   const logoutUser = () => {
     setUser(null);
+    navigate("/")
   };
 
   return (
