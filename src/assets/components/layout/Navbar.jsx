@@ -12,6 +12,11 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await axios.post("/auth/logout");
+      if(localStorage.getItem("isHebrew")){
+        localStorage.removeItem("isHebrew");
+        localStorage.removeItem("selectedSong")
+        localStorage.removeItem("songData")
+      }
       logoutUser();
     } catch (error) {
       toast.error("Logout failed");
@@ -20,19 +25,12 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 shadow-md backdrop-blur-md relative z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-2 md:px-4 lg:px-0 max-w-7xl mx-auto">
         <div className="flex justify-between items-center h-16 relative">
           {/* Logo */}
           <div className="text-2xl font-semibold tracking-wide text-neutral-100">
             <Link to="/">JaMoveo</Link>
           </div>
-
-          {/* Desktop links */}
-          <ul className="hidden md:flex space-x-8 text-sm font-medium">
-            <li><Link to="/" className="text-neutral-200 hover:text-white transition">Home</Link></li>
-            <li><Link to="/about" className="text-neutral-200 hover:text-white transition">About</Link></li>
-            <li><Link to="/contact" className="text-neutral-200 hover:text-white transition">Contact</Link></li>
-          </ul>
 
           {/* User section (desktop) */}
           {user?.username && (
@@ -66,9 +64,8 @@ export default function Navbar() {
 
             {isOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-xl shadow-lg py-2 ring-1 ring-black/10 z-50">
-                <Link to="/" className="block px-4 py-2 hover:bg-gray-100">Home</Link>
-                <Link to="/about" className="block px-4 py-2 hover:bg-gray-100">About</Link>
-                <Link to="/contact" className="block px-4 py-2 hover:bg-gray-100">Contact</Link>
+                <Link to="/" className="block px-4 py-2 hover:bg-gray-100">sign in</Link>
+                <Link to="/signup" className="block px-4 py-2 hover:bg-gray-100">sign up</Link>
 
                 {user?.username && (
                   <>
