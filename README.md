@@ -1,11 +1,12 @@
 #  JaMoveo - Collaborative Music Rehearsal App
 
-Welcome to **JaMoveo**, a real-time collaborative platform where an admin (conductor) selects a song, and all musicians (clients) join in to rehearse with synchronized lyrics and chords. Built with ❤️ using Node.js, React, Socket.IO, MongoDB, and Cloudinary.
+Welcome to **JaMoveo**, a real-time collaborative platform where an admin (conductor) selects a song, and all musicians (clients) join in to rehearse with synchronized lyrics and chords. Built with using Node.js, React, Socket.IO, MongoDB, and Cloudinary.
 
 ---
 
 ##  Live Demo
 
+https://ja-moveo-frontend-pi.vercel.app/
 
 ---
 
